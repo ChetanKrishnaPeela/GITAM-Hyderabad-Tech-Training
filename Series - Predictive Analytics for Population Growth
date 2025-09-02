@@ -1,0 +1,80 @@
+In a city, urban planners are modeling population growth using a predictive series to estimate how the population will expand over the years. The goal is to write a program that generates and prints the first N terms of this series, which is derived from observed data patterns. The series follows the pattern: 1,3,4,8,15,27,50,…
+
+Input Format
+
+A single integer N, representing the number of terms to generate in the series.
+
+Constraints
+
+NA
+
+Output Format
+
+A single line containing N terms from the series, separated by spaces.
+
+Sample Input 0
+
+6
+Sample Output 0
+
+1 3 4 8 15 27
+Explanation 0
+
+Start with 1 and 3.
+The third term is 4.
+The fourth term is 4+4=8.
+The fifth term is 8+7=15.
+The sixth term is 15+12=27.
+Sample Input 1
+
+4
+Sample Output 1
+
+1 3 4 8
+
+
+
+
+
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        // Use a try-with-resources statement for safe resource handling
+        try (Scanner sc = new Scanner(System.in)) {
+            int n = sc.nextInt();
+
+            // Handle edge cases for n=0, 1, 2
+            if (n <= 0) {
+                return;
+            } else if (n == 1) {
+                System.out.print("1");
+                return;
+            } else if (n == 2) {
+                System.out.print("1 3");
+                return;
+            }
+
+            // Initialize the array with the first three terms
+            int arr[] = new int[n];
+            arr[0] = 1;
+            arr[1] = 3;
+            arr[2] = 4;
+            
+            // Print the first three terms before starting the loop
+            System.out.print(arr[0] + " " + arr[1] + " " + arr[2]);
+
+            // Generate and print the rest of the terms from the 4th term onwards
+            // Each new term is the sum of the previous three terms.
+            for (int i = 3; i < n; i++) {
+                arr[i] = arr[i-1] + arr[i-2] + arr[i-3];
+                System.out.print(" " + arr[i]);
+            }
+        } catch (Exception e) {
+            System.err.println("An error occurred: " + e.getMessage());
+        }
+    }
+}
