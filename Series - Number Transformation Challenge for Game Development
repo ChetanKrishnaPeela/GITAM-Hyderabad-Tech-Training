@@ -1,0 +1,68 @@
+A game developer is working on a unique puzzle game in which players are given a number and need to transform it using a series of operations until it becomes 1. The transformations follow the rules of the famous Collatz sequence: if the number is even, divide it by 2; if it's odd, multiply it by 3 and add 1. The objective is to simulate this transformation sequence and display all the numbers until the number reduces to 1.
+
+Write a program that generates and displays the Collatz sequence for any given positive integer NNN.
+
+Input Format
+
+A single integer N, where N>0.
+
+Constraints
+
+NA
+
+Output Format
+
+A single line of integers representing the Collatz sequence, separated by spaces.
+
+Sample Input 0
+
+6
+Sample Output 0
+
+6 3 10 5 16 8 4 2 1
+Explanation 0
+
+Starting with N=6N = 6N=6:
+
+6 is even, so 6/2=3
+3 is odd, so 3×3+1=10
+10 is even, so 10/2=5
+5 is odd, so 5×3+1=16
+16 is even, so 16/2=8
+8 is even, so 8/2=4
+4 is even, so 4/2=2
+2 is even, so 2/2=1
+The sequence continues until the number reaches 1.
+
+Sample Input 1
+
+11
+Sample Output 1
+
+11 34 17 52 26 13 40 20 10 5 16 8 4 2 1
+Explanation 1
+
+The Collatz sequence for 11 generates more numbers until it reduces to 1.
+
+
+
+
+
+import java.io.*;
+import java.util.*;
+
+public class Solution 
+{
+    public static void main(String[] args) 
+    {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();    
+        while(n!=1)
+        {
+            System.out.print(n+" ");
+            if(n%2 != 0){n = n*3+1;}
+            else{n /= 2;}
+        }
+        System.out.print(1);
+    }
+}
