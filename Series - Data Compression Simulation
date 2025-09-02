@@ -1,0 +1,68 @@
+A data compression algorithm compresses data packets at varying rates. To simulate the compression effect over time, a geometric progression is used, where the initial packet size is reduced or multiplied by a constant ratio over a number of compression cycles. Your task is to generate the series of compressed data packet sizes over n cycles, given the initial size, the common ratio, and the number of cycles.
+
+Write a program to generate and print the n terms of the geometric progression series, given the initial size (first term), the compression ratio (common ratio), and the number of cycles.
+
+Input Format
+
+An integer a representing the first term of the geometric progression (initial packet size).
+An integer r representing the common ratio.
+An integer n representing the number of terms (number of compression cycles).
+Constraints
+
+NA
+
+Output Format
+
+A single line with n terms of the geometric progression, separated by spaces.
+
+Sample Input 0
+
+10 2 5
+Sample Output 0
+
+10 20 40 80 160
+Explanation 0
+
+Given the first term a=, common ratio r=, and number of terms n=5, the series is:
+
+10×2^0=10
+10×2^1=20
+10×2^2=40
+10×2^3=80
+10×2^4=160
+Sample Input 1
+
+5 3 4
+Sample Output 1
+
+5 15 45 135
+Explanation 1
+
+Given the first term a=5, common ratio r=3, and number of terms n=4, the series is:
+
+5×3^0=5
+5×3^1=15
+5×3^2=45
+5×3^3=135
+
+
+
+
+
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) 
+    {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int r = sc.nextInt();
+        int n = sc.nextInt();
+        for(int i=0; i<n; i++)
+        {
+            double ans = a*Math.pow(r,i);
+            System.out.print((int)(ans)+" ");
+        }
+    }
+}
