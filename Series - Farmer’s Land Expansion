@@ -1,0 +1,77 @@
+A farmer initially owns a small 2x2 land. However, with plans to expand his farming capacity, he starts buying additional land. Every week, he buys a new piece of land adjacent to his existing plot. The sizes of these newly purchased lands are increasing in a predictable pattern.
+
+On the first week, he buys a 1x1 land.
+On the second week, he buys a 2x2 land.
+On the third week, he buys a 3x3 land.
+This pattern continues, with each new purchase increasing in size (4x4, 5x5, and so on). Your task is to write a program that generates the area of the land the farmer owns after each new purchase.
+
+You are given a number 'n', which denotes how many times the farmer has expanded his land. The goal is to calculate and print the total area of the farmer's land after each purchase. Each term in the sequence represents the total area of land the farmer owns after each purchase.
+
+Input Format
+
+The input consists of a single integer 'n', which denotes the number of terms (or the number of land expansions).
+
+Constraints
+
+'n' is a positive integer.
+
+Output Format
+
+Print the series of total land area after each expansion, separated by spaces.
+
+Sample Input 0
+
+6
+Sample Output 0
+
+4 5 9 18 34 59
+Explanation 0
+
+For n = 6, the sequence represents the area of land after each purchase:
+
+Initially, the farmer has a 2x2 plot, which is an area of 4.
+
+After the first purchase, he adds a 1x1 land, so the area is 4 + 1 = 5.
+After the second purchase, he adds a 2x2 land, so the area is 5 + 4 = 9.
+After the third purchase, he adds a 3x3 land, so the area is 9 + 9 = 18.
+After the fourth purchase, he adds a 4x4 land, so the area is 18 + 16 = 34.
+After the fifth purchase, he adds a 5x5 land, so the area is 34 + 25 = 59.
+Thus, the output for n = 6 is: 4,5,9,18,34,59.
+
+Sample Input 1
+
+3
+Sample Output 1
+
+4 5 9
+Explanation 1
+
+For n = 3, the sequence represents the area of land after each purchase:
+
+Initially, the farmer has a 2x2 plot, which is an area of 4.
+
+After the first purchase, he adds a 1x1 land, so the area is 4 + 1 = 5.
+After the second purchase, he adds a 2x2 land, so the area is 5 + 4 = 9.
+Thus, the output for n = 3 is: 4,5,9
+
+
+
+
+
+
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) 
+    {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int ans=4;
+        for(int i=0; i<n; i++)
+        {
+            ans += Math.pow(i,2);
+            System.out.print(ans+" ");
+        }
+    }
+}
