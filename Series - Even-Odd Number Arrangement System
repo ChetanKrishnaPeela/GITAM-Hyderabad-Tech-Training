@@ -1,0 +1,62 @@
+Imagine a company implementing a system to organize files in a unique manner. Files are numbered sequentially, but they must be arranged such that all even-numbered files are placed first, followed by all odd-numbered files. The sequence starts from 1, and you are required to generate a series of numbers in this specific order: even numbers followed by odd numbers, up to N terms.
+
+Your task is to write a program to generate the series: 2,1,4,3,6,5,… up to Nterms.
+
+Input Format
+
+A single integer N, representing the number of terms to generate in the series.
+
+Constraints
+
+NA
+
+Output Format
+
+A single line containing N terms of the series, separated by spaces.
+
+Sample Input 0
+
+6
+Sample Output 0
+
+2 1 4 3 6 5
+Explanation 0
+
+The first three even numbers are: 2, 4, 6.
+The first three odd numbers are: 1, 3, 5.
+Arranging them alternately gives: 2, 1, 4, 3, 6, 5.
+Sample Input 1
+
+4
+Sample Output 1
+
+2 1 4 3
+Explanation 1
+
+The first two even numbers are: 2, 4.
+The first two odd numbers are: 1, 3.
+Arranging them alternately gives: 2, 1, 4, 3.
+
+
+
+
+
+import java.io.*;
+import java.util.*;
+
+public class Solution 
+{
+
+    public static void main(String[] args) 
+    {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int ans = 2;
+        for(int i=0; i<n; i++)
+        {
+            System.out.print(ans+" ");
+            if(ans % 2 == 0) ans--;
+            else ans+=3;
+        }
+    }
+}
