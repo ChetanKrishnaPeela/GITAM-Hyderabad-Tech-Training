@@ -79,42 +79,38 @@ City 4: 3
 
 
 
+import java.io.*;
 import java.util.*;
 
-public class RoadNetwork 
-{
-    public static void main(String[] args) 
-    {
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int m = sc.nextInt();
-        ArrayList<ArrayList<Integer>> adjList = new ArrayList<>();
-        for (int i = 0; i <= n; i++) 
-        {
-            adjList.add(new ArrayList<>());
-        }
-        for (int i = 0; i < m; i++) 
+        HashMap<Integer,ArrayList<Integer>> hm = new HashMap<>();
+        for(int i=0; i<m; i++)
         {
             int u = sc.nextInt();
             int v = sc.nextInt();
+            if(!hm.containsKey(u)) hm.put(u, new ArrayList<>());
+            if(!hm.containsKey(v)) hm.put(v, new ArrayList<>());
+            hm.get(u).add(v);
+            hm.get(v).add(u);
+        }
+        
+        for(int i=1; i<=n; i++)
+        {
+            Collections.sort(hm.get(i));
+        }
 
-            adjList.get(u).add(v);
-            adjList.get(v).add(u);
-        }
-        for (int i = 1; i <= n; i++) 
+        for(int i=1; i<=n; i++)
         {
-            Collections.sort(adjList.get(i));
-        }
-        for (int i = 1; i <= n; i++) 
-        {
-            System.out.print("City " + i + ": ");
-            for (int neighbor : adjList.get(i)) 
-            {
-                System.out.print(neighbor + " ");
-            }
+            System.out.print("City "+ i +": ");
+            for(int k: (hm.get(i))) System.out.print(k+" ");
             System.out.println();
         }
-
-        sc.close();
     }
+}
 }
