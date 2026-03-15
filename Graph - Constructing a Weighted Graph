@@ -56,38 +56,37 @@ Sample Output 1
 
 
 
+import java.io.*;
 import java.util.*;
 
-public class WeightedGraph {
+public class Solution {
+
     public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int m = sc.nextInt();
-
-        ArrayList<ArrayList<int[]>> adjList = new ArrayList<>();
-        for (int i = 0; i <= n; i++) 
-        {
-            adjList.add(new ArrayList<>());
-        }
-        for (int i = 0; i < m; i++) 
+        HashMap<Integer,ArrayList<int[]>> res = new HashMap<>();
+        for(int i=0; i<m; i++)
         {
             int u = sc.nextInt();
             int v = sc.nextInt();
-            int w = sc.nextInt();
-
-            adjList.get(u).add(new int[]{v, w});
-            adjList.get(v).add(new int[]{u, w});
+            int c = sc.nextInt();
+            
+            if(!res.containsKey(u)) res.put(u,new ArrayList<>());
+            if(!res.containsKey(v)) res.put(v,new ArrayList<>());
+            
+            int arr1[] = {v,c};
+            int arr2[] = {u,c};
+            
+            res.get(u).add(arr1);
+            res.get(v).add(arr2);
         }
-        for (int i = 1; i <= n; i++) 
+        for(int i=1; i<= n; i++)
         {
-            System.out.print(i);
-            for (int[] edge : adjList.get(i)) 
-            {
-                System.out.print(" -> (" + edge[0] + ", " + edge[1] + ")");
-            }
+            System.out.print(i+" ");
+            for(int a[]: res.get(i)) System.out.print("-> ("+a[0]+", "+a[1]+") ");
             System.out.println();
         }
-
-        sc.close();
     }
 }
