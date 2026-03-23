@@ -1,0 +1,105 @@
+In a remote archipelago, a group of researchers is studying the various islands formed by connected landmasses. Each island is represented by the digit 1 in a binary matrix, while water is represented by the digit 0. The researchers need to determine the total number of distinct islands in a given matrix, where islands are defined as groups of connected 1s. Two 1s are considered connected if they are adjacent either vertically or horizontally.
+
+Input Format
+
+The first line contains two integers, m (number of rows) and n (number of columns) of the binary matrix.
+The next m lines each contain n space-separated integers (0 or 1), representing the binary matrix.
+Constraints
+
+NA
+
+Output Format
+
+Output a single integer, representing the number of distinct islands in the matrix.
+
+Sample Input 0
+
+4 5
+1 1 0 0 0
+1 0 0 1 1
+0 0 0 1 0
+0 1 1 0 0
+Sample Output 0
+
+3
+Explanation 0
+
+In the given binary matrix:
+
+The islands formed by the connected 1s can be counted as follows:
+
+The first island is at positions (0,0), (0,1), (1, 0).
+The second island is at position (1,3), (1,4) and (2, 3)
+The third island is formed by the connected 1s at positions (3,2) and (3,3).
+Therefore, the total number of distinct islands is 3.
+
+Sample Input 1
+
+4 4
+1 0 0 0
+0 1 0 1
+0 0 1 0
+0 0 0 0
+Sample Output 1
+
+4
+
+
+
+
+
+
+
+
+import java.io.*;
+import java.util.*;
+
+public class Solution 
+{
+    public static void findIsland(boolean visited[][], int arr[][], int n, int m)
+    {
+        visited[n][m] = true;
+        if((m>0) && (arr[n][m-1] == 1) && (!visited[n][m-1]))
+        {
+            findIsland(visited, arr, n, m-1);
+        }
+        if((m < arr[0].length-1) && (arr[n][m+1] == 1) && (!visited[n][m+1]))
+        {
+            findIsland(visited, arr, n, m+1);
+        }
+        if((n < arr.length-1) && (arr[n+1][m] == 1) && (!visited[n+1][m]))
+        {
+            findIsland(visited, arr, n+1, m);
+        }
+    }
+
+    public static void main(String[] args) 
+    {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        int arr[][] = new int[n][m];
+        for(int i=0; i<n; i++)
+        {
+            for(int j=0; j<m; j++)
+            {
+                arr[i][j] = sc.nextInt();
+            }
+        }
+        
+        boolean visited[][] = new boolean[n][m];
+        int count=0;
+        for(int i=0; i<n; i++)
+        {
+            for(int j=0; j<m; j++)
+            {
+                if((arr[i][j] == 1) && (!visited[i][j])) 
+                {
+                    findIsland(visited,arr,i,j);
+                    count++;
+                }
+            }
+        }
+        System.out.print(count);
+    }
+}
